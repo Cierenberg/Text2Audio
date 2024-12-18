@@ -3,7 +3,7 @@
 import os 
 """Saving Voice to a files"""
 
-name = "ruhig-blut"
+name = "der-fuenfte-elefantl"
 
 def getIntAsString(value,minLength):
     stringValue = str(value)
@@ -11,18 +11,22 @@ def getIntAsString(value,minLength):
         stringValue = "0" + stringValue
     return stringValue
 
-def saveSentanceToFile(mainPart,part,sentence):
-    fileName = "mp3_" + getIntAsString(mainPart, 2) + "/" + name + "_" + getIntAsString(part, 8) + ".mp3"
-    command = "gtts-cli \"" + sentence.strip() + "\" --lang de --output " + fileName
-    print(fileName + ": bytes: " + str(len(sentence)) + ")")
-    #print(command)
-    os.system(command)
-    if len(sentence) < 11:
-        print("[WARNING] Short sentence: " + sentence)
-    print("done")
+def saveSentanceToFile(mainPart,part,sentence):    
+    if len(sentence) > 0:
+        fileName = "mp3_" + getIntAsString(mainPart, 2) + "/" + name + "_" + getIntAsString(part, 8) + ".mp3"
+        command = "gtts-cli \"" + sentence.strip().replace("*","") + "\" --lang de --output " + fileName
+        print(fileName + ": bytes: " + str(len(sentence)) + ")")
+        try:
+            #print(command)
+            os.system(command)
+        except BaseException as e:
+            print("[ERROR] " + e + "/nSentence: " + sentence)
+        if len(sentence) < 6:
+            print("[WARNING] Short sentence: " + sentence)
+        print("done")
 
 
-file_path = "/home/hendrik/tmp/test_espeag-ng/gtts/ruhig-blut.txt"
+file_path = "/home/hendrik/tmp/test_espeag-ng/gtts/der-fuenfte-elefantl.txt"
 print("start read")
 with open(file_path, 'r') as file:
     fileContent = ""
@@ -46,7 +50,7 @@ processed = 0
 maxProcessed = 60000;
 mainPart = 0
 part = 0
-convertMainPart = 7
+convertMainPart = 0
 convertMainPartString = getIntAsString(convertMainPart, 2)
 path = "mp3_" + convertMainPartString
 mainPath = "mp3_main" 
