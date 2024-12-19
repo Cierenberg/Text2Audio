@@ -3,10 +3,10 @@
 import os 
 """Saving Voice to a files"""
 
-name = "der-fuenfte-elefantl"
+name = "fliegende-fetzen"
 nameOrg = name
 
-vpnPostList = ["122106","124117","135116","144113","150125","192102","243132","279104","292124","293119","100122"]
+vpnPostList = ["122106","124117","135116","144113","150125","192102","243132","279104","292124","293119","303120","307114","304112","330079","100122"]
 vpnPre = "NL-FREE#"
 
 errorlist = []
@@ -14,8 +14,8 @@ errorlist = []
 mainPartFactor = 4
 
 
-singleRequest = True
-singleRequestParts = [14,19]
+singleRequest = False
+singleRequestParts = [17]
 singleRequestVPN = len(vpnPostList) - 1
 def optimizeCutPosition(text,desired):
     start = int(desired) - 200
@@ -35,7 +35,7 @@ def saveParttoFile(part,partContend,offset):
     if singleRequest:
         mp = int(part / 4)
         fileName = "mp3_" + getIntAsString(mp, 2) + "/" + nameOrg + "_" + getIntAsString(part, 4) + ".mp3"
-        hint = "mp3wrap mp3_" + getIntAsString(mp, 2) + "/" + nameOrg + "_text-to-speak-gtts_" + getIntAsString(mp, 2) + "_2.mp3 mp3_" + getIntAsString(mp, 2) + "/" + nameOrg + "der-fuenfte-elefantl_0*.mp3"
+        hint = "mp3wrap mp3_" + getIntAsString(mp, 2) + "/" + nameOrg + "_text-to-speak-gtts_" + getIntAsString(mp, 2) + "_2.mp3 mp3_" + getIntAsString(mp, 2) + "/" + nameOrg + "_0*.mp3"
         command = "rm " + fileName
         print(command)
         os.system(command)
@@ -44,16 +44,20 @@ def saveParttoFile(part,partContend,offset):
     print(fileName + ": Offset:" + str(offset) + " (bytes: " + str(len(partContend)) + ")")
     try:
         #print(command)
-        os.system(command)
+        response = os.system(command)
+        #response=0
         #print("No Actiom")
+        if len(str(response)) > 1:
+            errorlist.append(str(part) + ": " + name + "_" + getIntAsString(part, 4) + "(" + str(response) + ")")
+            print("[ERROR] " + str(response))
     except BaseException as e:
-        print("[ERROR] " + e)
-        errorlist.append(str(part) + ": " + name + "_" + getIntAsString(part, 4) + "(" + e + ")")
+        print("[ERROR] " + str(e))
+        errorlist.append(str(part) + ": " + name + "_" + getIntAsString(part, 4) + "(" + str(e) + ")")
     print("done")
 
 
 def changeVPM(number):
-    server = vpnPre + vpnPostList[number]
+    server = vpnPre + vpnPostList[number % len(vpnPostList)]
     command = "protonvpn-cli d"
     #print(command)
     os.system(command)
@@ -66,7 +70,7 @@ def changeVPM(number):
     
 
 
-file_path = 'der-fuenfte-elefantl.txt'
+file_path = 'fliegende-fetzen.txt'
 print("start read")
 
 with open(file_path, 'r') as file:
@@ -87,7 +91,7 @@ partLength = 16000
 part = 1
 offset = 0
 
-mainPart = 0
+mainPart = 11
 
 "mp3_"
 finished = False
@@ -100,6 +104,8 @@ if singleRequest:
 while not finished:
     if not singleRequest:
         changeVPM(mainPart)
+        #print("nc")
+
 
     mainPartString = getIntAsString(mainPart, 2)
     mainpartStart = mainPart * mainPartFactor
@@ -178,7 +184,6 @@ while not finished:
     finished = mainPart * 4 > part
     if singleRequest:
         finished = True
-        print(run: mp3wrap der-fuenfte-elefantl_text-to-speak-gtts_03_2.mp3 /home/hendrik/tmp/test_espeag-ng/gtts/mp3_03/der-fuenfte-elefantl_0*.mp3)
     part = 1
     offset = 0
 if len(errorlist) > 0:

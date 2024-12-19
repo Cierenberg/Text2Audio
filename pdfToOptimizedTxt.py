@@ -1,15 +1,15 @@
 import  pymupdf
 from io import StringIO
 
-input = "ruhig-blut.pdf"
-output = "ruhig-blut_full.txt"
+input = "fliegende-fetzen.pdf"
+output = "fliegende-fetzen_full.txt"
 
 pdf = pymupdf.Document(input)
 pages = pdf.page_count
 
 def getTextFromPage(number):
     page = pdf.load_page(number)
-    return page.get_text("text").replace("\n", "").replace(" " + str(number) + " ","").replace("\"","\\\"").replace("!","\!")
+    return page.get_text("text").replace("\n", "").replace(" " + str(number),"").replace("\"","\\\"").replace("!","\!")
 content = StringIO()
 
 for x in range(1, pages):
