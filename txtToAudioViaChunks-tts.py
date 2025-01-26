@@ -3,10 +3,11 @@
 import os 
 """Saving Voice to a files"""
 
-name = "fliegende-fetzen"
+name = "Weiberregiment"
 nameOrg = name
 
-vpnPostList = ["122106","124117","135116","144113","150125","192102","243132","279104","292124","293119","303120","307114","304112","330079","100122"]
+vpnPostList = ["135116","144113","150125","192102","243132","279104","292124","293119","303120","307114","304112","330079","100122","124117","122106"]
+
 vpnPre = "NL-FREE#"
 
 errorlist = []
@@ -14,8 +15,8 @@ errorlist = []
 mainPartFactor = 4
 
 
-singleRequest = False
-singleRequestParts = [17]
+singleRequest = True
+singleRequestParts = [8,23,31]
 singleRequestVPN = len(vpnPostList) - 1
 def optimizeCutPosition(text,desired):
     start = int(desired) - 200
@@ -47,7 +48,7 @@ def saveParttoFile(part,partContend,offset):
         response = os.system(command)
         #response=0
         #print("No Actiom")
-        if len(str(response)) > 1:
+        if len(str(response)) > 1 or not str(response) == "0":
             errorlist.append(str(part) + ": " + name + "_" + getIntAsString(part, 4) + "(" + str(response) + ")")
             print("[ERROR] " + str(response))
     except BaseException as e:
@@ -70,7 +71,7 @@ def changeVPM(number):
     
 
 
-file_path = 'fliegende-fetzen.txt'
+file_path = 'Weiberregiment.txt'
 print("start read")
 
 with open(file_path, 'r') as file:
@@ -82,7 +83,7 @@ with open(file_path, 'r') as file:
         line = file.readline()
 print("read finished")
 #fileContent = fileContent.replace("\n", "").replace("\"","\\\"").replace("!","\!")
-fileContent = fileContent.replace("\n", "")
+fileContent = fileContent.replace("\"", "'")
 
 fullLength = len(fileContent)
 print("Lenth: " + str(fullLength))
@@ -91,7 +92,7 @@ partLength = 16000
 part = 1
 offset = 0
 
-mainPart = 11
+mainPart = 0
 
 "mp3_"
 finished = False
