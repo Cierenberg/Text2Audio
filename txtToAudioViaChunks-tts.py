@@ -3,7 +3,7 @@
 import os 
 """Saving Voice to a files"""
 
-name = "Weiberregiment"
+name = "mummenschanz"
 nameOrg = name
 
 vpnPostList = ["135116","144113","150125","192102","243132","279104","292124","293119","303120","307114","304112","330079","100122","124117","122106"]
@@ -16,7 +16,7 @@ mainPartFactor = 4
 
 
 singleRequest = True
-singleRequestParts = [8,23,31]
+singleRequestParts = [9]
 singleRequestVPN = len(vpnPostList) - 1
 def optimizeCutPosition(text,desired):
     start = int(desired) - 200
@@ -71,7 +71,7 @@ def changeVPM(number):
     
 
 
-file_path = 'Weiberregiment.txt'
+file_path = name + '.txt'
 print("start read")
 
 with open(file_path, 'r') as file:
