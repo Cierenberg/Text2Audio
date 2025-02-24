@@ -2,12 +2,13 @@
 from io import StringIO
 from epub import Epub
 
-display_name = "Heiße Hüpfer"
-name = "heisse-huepfer"
-author = "Terry Pratchet"
-cover = "hh.png"
-intro = "ein neuer Geniestreich von <i>Terry Pratchett</i>, dem erfolgreichsten englischen Autor der Gegenwart.<hr /><br />"
-intro = intro + "<b>Zusammenfassung:</b> Irgendwo am Ende der Scheibenwelt gibt es einen Kontinent, der nur als mißratene Schöpfung bezeichnet werden kann. Dort ist es heiß und trocken, und alles, was nicht sowieso giftig ist, kann tödlich wirken. Also das glatte Gegenteil vom schönsten Ort auf der ganzen Welt, und es droht mit ihm endgültig zur Neige zu gehen. Als Retter kommt nur ein Mann mit Hut in Frage, der dort durch die rote Wüste wandert. Ein Zauberer, der nicht einmal weiß, wie <i>Zauberer</i> geschrieben wird. Rincewind, der letzte Held…"
+display_name = "Mummenschanz"
+name = "mummenschanz"
+author = "Terry Pratchett"
+cover = "ms.png"
+intro = "Im Opernhaus von AnkhMorpork huschen maskierte Gestalten durch die Kulissen und führen Niederträchtiges im Schilde. Zwei alte Damen beobachten den Kronleuchter und murmeln dazu Sätze wie: <i>'Da wartet ein Unglück darauf, daß es passiert…</i>' Ja, Oma Wetterwachs und Nanny Ogg, die größten Hexen der Scheibenwelt, haben ihren Auftritt…<hr/><br/>Ich danke all den Personen, die mir zeigten, daß eine Oper seltsamer sein kann, als ich dachte. Am besten vergelte ich ihre Freundlichkeit, indem ich darauf verzichte, ihre Namen hier zu nennen."  
+
+
 
 
 input = name + ".txt"
